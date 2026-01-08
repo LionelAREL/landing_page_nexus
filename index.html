@@ -1,1167 +1,1129 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS - L'Avenir de la Data</title>
-    
-    <!-- Favicon & Icons -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='%234f46e5' transform='rotate(45 50 50)'/%3E%3Crect x='40' y='40' width='20' height='20' rx='4' fill='white'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='%234f46e5' transform='rotate(45 50 50)'/%3E%3Crect x='40' y='40' width='20' height='20' rx='4' fill='white'/%3E%3C/svg%3E">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS - L'Avenir de la Data</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='%234f46e5' transform='rotate(45 50 50)'/%3E%3Crect x='40' y='40' width='20' height='20' rx='4' fill='white'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='%234f46e5' transform='rotate(45 50 50)'/%3E%3Crect x='40' y='40' width='20' height='20' rx='4' fill='white'/%3E%3C/svg%3E">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#0B0C15',
-                            accent: '#6366f1',
-                            glow: '#818cf8',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'cursor': 'cursor .75s step-end infinite',
-                        'badge-pulse': 'badge-pulse 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '.5' },
-                        },
-                        cursor: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0' },
-                        },
-                        'badge-pulse': {
-                            '0%, 100%': { 
-                                borderColor: 'rgba(99, 102, 241, 0.3)', 
-                                boxShadow: '0 0 0 0 rgba(99, 102, 241, 0)' 
-                            },
-                            '50%': { 
-                                borderColor: 'rgba(129, 140, 248, 0.8)', 
-                                boxShadow: '0 0 15px 0 rgba(99, 102, 241, 0.3)' 
-                            },
-                        }
-                    }
-                }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B0C15',
+              accent: '#6366f1',
+              glow: '#818cf8',
             }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'cursor': 'cursor .75s step-end infinite',
+            'badge-pulse': 'badge-pulse 3s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            'pulse-glow': {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '.5' },
+            },
+            cursor: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0' },
+            },
+            'badge-pulse': {
+              '0%, 100%': {
+                borderColor: 'rgba(99, 102, 241, 0.3)',
+                boxShadow: '0 0 0 0 rgba(99, 102, 241, 0)'
+              },
+              '50%': {
+                borderColor: 'rgba(129, 140, 248, 0.8)',
+                boxShadow: '0 0 15px 0 rgba(99, 102, 241, 0.3)'
+              },
+            }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+  <style>
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0C15;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
-            border-radius: 4px;
-        }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0B0C15; }
+    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
 
-        /* Glassmorphism Utilities */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+    /* Glassmorphism Utilities */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-        .glass-nav {
-            background: rgba(5, 5, 5, 0.6);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease, box-shadow 0.5s ease;
-            position: relative; 
-            overflow: hidden;   
-        }
+    .glass-nav {
+      background: rgba(5, 5, 5, 0.6);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .glass-nav.scrolled {
-            background: rgba(5, 5, 5, 0.9);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
+    .glass-nav.scrolled {
+      background: rgba(5, 5, 5, 0.9);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
 
-        /* Header Shimmer Effect */
-        .glass-nav::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: skewX(-20deg);
-            pointer-events: none;
-            transition: left 0.5s; 
-        }
+    /* Header Shimmer Effect */
+    .glass-nav::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: skewX(-20deg);
+      pointer-events: none;
+      transition: left 0.5s;
+    }
 
-        .glass-nav:hover::after {
-            left: 200%;
-            transition: left 1.5s ease-in-out; 
-        }
+    .glass-nav:hover::after {
+      left: 200%;
+      transition: left 1.5s ease-in-out;
+    }
 
-        /* Gradient Text */
-        .text-gradient {
-            background: linear-gradient(135deg, #fff 0%, #818cf8 50%, #c084fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .text-gradient-alt {
-            background: linear-gradient(135deg, #818cf8 0%, #2dd4bf 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* Gradient Text */
+    .text-gradient {
+      background: linear-gradient(135deg, #fff 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        /* Card Hover Effects & Tilt */
-        .feature-card {
-            transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-            z-index: 1;
-        }
+    .text-gradient-alt {
+      background: linear-gradient(135deg, #818cf8 0%, #2dd4bf 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .feature-card:hover::before {
-            opacity: 1;
-        }
+    /* Card Hover Effects & Tilt */
+    .feature-card {
+      transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
 
-        /* Nav Link Animation */
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background-color: #6366f1;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
+    .feature-card:hover::before { opacity: 1; }
 
-        /* 3D Canvas Positioning */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-            opacity: 0.6;
-        }
-        
-        /* Button Glow */
-        .btn-glow {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .btn-glow::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .btn-glow:hover::after {
-            left: 100%;
-        }
+    /* Nav Link Animation */
+    .nav-link { position: relative; }
 
-        /* Chart Canvases */
-        #chart-canvas, #bar-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background-color: #6366f1;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
 
-        /* Pricing Card Special */
-        .pricing-card-pro {
-            border: 1px solid rgba(99, 102, 241, 0.5);
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
-        }
-        
-        /* FAQ Animation Styles */
-        .faq-content {
-            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-            max-height: 0;
-            opacity: 0;
-        }
-        .faq-content.active {
-            opacity: 1;
-        }
-    </style>
+    .nav-link:hover::after { width: 100%; }
+
+    /* ✅ 3D Canvas Positioning (Hero only) */
+    #canvas-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* Button Glow */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-glow:hover::after { left: 100%; }
+
+    /* Chart Canvases */
+    #chart-canvas, #bar-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Pricing Card Special */
+    .pricing-card-pro {
+      border: 1px solid rgba(99, 102, 241, 0.5);
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+    }
+
+    /* FAQ Animation Styles */
+    .faq-content {
+      transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+    }
+    .faq-content.active { opacity: 1; }
+  </style>
 </head>
+
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
 
-    <!-- 3D Background -->
-    <div id="canvas-container"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav py-6" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between transition-all duration-300">
-                <!-- Logo -->
-                <div class="flex-shrink-0 cursor-pointer flex items-center gap-2 group">
-                    <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center rotate-45 group-hover:rotate-90 transition-transform duration-500">
-                        <div class="w-4 h-4 bg-white rounded-sm -rotate-45 group-hover:-rotate-90 transition-transform duration-500"></div>
-                    </div>
-                    <span class="font-display font-bold text-2xl tracking-tight text-white group-hover:text-indigo-400 transition-colors">NEXUS</span>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#features" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Solutions</a>
-                        <a href="#workflow" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Plateforme</a>
-                        <a href="#testimonials" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Clients</a>
-                        <a href="#pricing" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Tarifs</a>
-                    </div>
-                </div>
-
-                <!-- CTA Button -->
-                <div class="hidden md:block">
-                    <a href="#" class="px-6 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(79,70,229,0.6)] hover:-translate-y-0.5 transition-all duration-300">
-                        Commencer l'essai
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 glass-nav py-6" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between transition-all duration-300">
+        <!-- Logo -->
+        <div class="flex-shrink-0 cursor-pointer flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center rotate-45 group-hover:rotate-90 transition-transform duration-500">
+            <div class="w-4 h-4 bg-white rounded-sm -rotate-45 group-hover:-rotate-90 transition-transform duration-500"></div>
+          </div>
+          <span class="font-display font-bold text-2xl tracking-tight text-white group-hover:text-indigo-400 transition-colors">NEXUS</span>
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden glass-panel border-t border-white/5" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/10">Solutions</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Plateforme</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Tarifs</a>
-                <a href="#" class="block w-full text-center mt-4 px-5 py-3 rounded-lg bg-indigo-600 text-white font-medium">Commencer</a>
-            </div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-8">
+            <a href="#features" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Solutions</a>
+            <a href="#workflow" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Plateforme</a>
+            <a href="#testimonials" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Clients</a>
+            <a href="#pricing" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Tarifs</a>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <div class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
-            
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-indigo-500/30 mb-8 cursor-default hover:bg-white/5 transition-colors animate-badge-pulse">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-xs font-semibold tracking-wide text-indigo-200 uppercase">Nouvelle Version 2.0 Disponible</span>
-            </div>
-
-            <!-- Main Title -->
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-8">
-                L'Intelligence <br />
-                <span class="text-gradient">Au Delà des Données</span>
-            </h1>
-
-            <!-- Description -->
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-10 leading-relaxed">
-                Transformez vos données brutes en stratégies actionnables grâce à notre moteur d'IA prédictive. Une interface fluide, des résultats instantanés.
-            </p>
-
-            <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-black font-bold text-lg hover:bg-gray-100 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 transform duration-300 cubic-bezier(0.4, 0, 0.2, 1)">
-                    Découvrir la Plateforme
-                </a>
-                <a href="#" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel text-white font-semibold text-lg hover:bg-white/10 transition-all border border-white/10 flex items-center justify-center gap-2 group hover:scale-105 transform duration-300 cubic-bezier(0.4, 0, 0.2, 1)">
-                    <i data-lucide="play-circle" class="w-5 h-5 text-indigo-400 group-hover:text-white transition-colors"></i>
-                    Voir la démo
-                </a>
-            </div>
-
-            <!-- Abstract Stats -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/5 pt-10" id="stats-container">
-                <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
-                    <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="99.9">0</span>%</div>
-                    <div class="text-sm text-gray-500 mt-1">Uptime Garanti</div>
-                </div>
-                <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
-                    <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="500">0</span>k+</div>
-                    <div class="text-sm text-gray-500 mt-1">Utilisateurs</div>
-                </div>
-                <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
-                    <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="10">0</span>x</div>
-                    <div class="text-sm text-gray-500 mt-1">Plus Rapide</div>
-                </div>
-                <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
-                    <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="24">0</span>/7</div>
-                    <div class="text-sm text-gray-500 mt-1">Support Expert</div>
-                </div>
-            </div>
+        <!-- CTA Button -->
+        <div class="hidden md:block">
+          <a href="#" class="px-6 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(79,70,229,0.6)] hover:-translate-y-0.5 transition-all duration-300">
+            Commencer l'essai
+          </a>
         </div>
+
+        <!-- Mobile menu button -->
+        <div class="-mr-2 flex md:hidden">
+          <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- Bento Grid Services Section -->
-    <section id="features" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-3">Fonctionnalités</h2>
-                <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Tout ce dont vous avez besoin</h3>
-            </div>
+    <!-- Mobile Menu -->
+    <div class="hidden md:hidden glass-panel border-t border-white/5" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/10">Solutions</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Plateforme</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Tarifs</a>
+        <a href="#" class="block w-full text-center mt-4 px-5 py-3 rounded-lg bg-indigo-600 text-white font-medium">Commencer</a>
+      </div>
+    </div>
+  </nav>
 
-            <!-- Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
-                
-                <!-- Large Interactive Chart Item -->
-                <div class="md:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-between feature-card group relative overflow-hidden">
-                    <div class="relative z-20 pointer-events-none">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center mb-4 text-indigo-400">
-                            <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-2 text-white">Analytique en Temps Réel</h4>
-                        <p class="text-gray-400 max-w-md">Suivez vos KPIs avec une précision millimétrée. Visualisez les flux de données en direct via notre moteur graphique propriétaire.</p>
-                    </div>
-                    
-                    <!-- Interactive Canvas Background -->
-                    <div class="absolute inset-0 z-10 opacity-50 mask-gradient-bottom">
-                         <canvas id="chart-canvas"></canvas>
-                    </div>
-                </div>
+  <!-- ✅ Hero Section (Three.js background only here) -->
+  <div class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <!-- ✅ 3D Background (Hero only) -->
+    <div id="canvas-container"></div>
 
-                <!-- Tall Item -->
-                <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card md:row-span-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-32 bg-purple-600/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 text-purple-400 relative z-10">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-2 text-white relative z-10">Automatisation IA</h4>
-                    <p class="text-gray-400 mb-8 relative z-10">Laissez nos algorithmes gérer les tâches répétitives pendant que vous vous concentrez sur la stratégie.</p>
-                    
-                    <div class="mt-auto relative z-10 space-y-3">
-                        <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
-                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                            <span class="text-sm text-gray-300">Tâche optimisée</span>
-                        </div>
-                        <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
-                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse" style="animation-delay: 0.5s"></div>
-                            <span class="text-sm text-gray-300">Rapport généré</span>
-                        </div>
-                        <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
-                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse" style="animation-delay: 1s"></div>
-                            <span class="text-sm text-gray-300">Synchronisation</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
 
-                <!-- Regular Item -->
-                <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card">
-                    <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4 text-pink-400">
-                        <i data-lucide="shield" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 text-white">Sécurité de Pointe</h4>
-                    <p class="text-gray-400 text-sm">Chiffrement de bout en bout et conformité GDPR native pour toutes vos données.</p>
-                </div>
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-indigo-500/30 mb-8 cursor-default hover:bg-white/5 transition-colors animate-badge-pulse">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-xs font-semibold tracking-wide text-indigo-200 uppercase">Nouvelle Version 2.0 Disponible</span>
+      </div>
 
-                <!-- NEW Bar Chart Item -->
-                <div class="glass-panel rounded-3xl p-6 flex flex-col feature-card relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-2 relative z-20 pointer-events-none">
-                         <div>
-                             <h4 class="text-lg font-bold text-white">Métriques</h4>
-                             <p class="text-gray-400 text-xs">Engagement Mensuel</p>
-                         </div>
-                         <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
-                            <i data-lucide="bar-chart" class="w-4 h-4"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="flex-1 w-full relative z-10 mt-2">
-                        <canvas id="bar-canvas"></canvas>
-                    </div>
-                </div>
+      <!-- Main Title -->
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-8">
+        L'Intelligence <br />
+        <span class="text-gradient">Au Delà des Données</span>
+      </h1>
 
-            </div>
+      <!-- Description -->
+      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-10 leading-relaxed">
+        Transformez vos données brutes en stratégies actionnables grâce à notre moteur d'IA prédictive. Une interface fluide, des résultats instantanés.
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-black font-bold text-lg hover:bg-gray-100 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 transform duration-300 cubic-bezier(0.4, 0, 0.2, 1)">
+          Découvrir la Plateforme
+        </a>
+        <a href="#" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel text-white font-semibold text-lg hover:bg-white/10 transition-all border border-white/10 flex items-center justify-center gap-2 group hover:scale-105 transform duration-300 cubic-bezier(0.4, 0, 0.2, 1)">
+          <i data-lucide="play-circle" class="w-5 h-5 text-indigo-400 group-hover:text-white transition-colors"></i>
+          Voir la démo
+        </a>
+      </div>
+
+      <!-- Abstract Stats -->
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/5 pt-10" id="stats-container">
+        <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
+          <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="99.9">0</span>%</div>
+          <div class="text-sm text-gray-500 mt-1">Uptime Garanti</div>
         </div>
-    </section>
-
-    <!-- Visual Benefit Section -->
-    <section class="py-24 relative overflow-hidden" id="workflow">
-        <!-- Background Glow -->
-        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 rounded-full blur-[100px]"></div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2">
-                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
-                    Optimisez votre flux de travail <span class="text-gradient-alt">sans effort</span>
-                </h2>
-                <p class="text-lg text-gray-400 mb-8 leading-relaxed">
-                    Notre interface futuriste n'est pas seulement belle, elle est conçue pour l'efficacité. Réduisez le temps de gestion de 40% grâce à nos outils intelligents de regroupement et de filtrage.
-                </p>
-                
-                <ul class="space-y-4">
-                    <li class="flex items-center gap-3 group">
-                        <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
-                            <i data-lucide="check" class="w-4 h-4"></i>
-                        </div>
-                        <span class="text-gray-300 group-hover:text-white transition-colors">Intégration API simplifiée</span>
-                    </li>
-                    <li class="flex items-center gap-3 group">
-                        <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
-                            <i data-lucide="check" class="w-4 h-4"></i>
-                        </div>
-                        <span class="text-gray-300 group-hover:text-white transition-colors">Collaboration en équipe temps réel</span>
-                    </li>
-                    <li class="flex items-center gap-3 group">
-                        <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
-                            <i data-lucide="check" class="w-4 h-4"></i>
-                        </div>
-                        <span class="text-gray-300 group-hover:text-white transition-colors">Exportation multi-formats</span>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="lg:w-1/2 relative">
-                <!-- Abstract Code/Interface Representation with Typewriter -->
-                <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500 hover:scale-105">
-                    <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div class="space-y-3 font-mono text-sm h-[320px]" id="typewriter-container">
-                        <!-- Code will be injected here by JS -->
-                    </div>
-                </div>
-                
-                <!-- Floating elements behind -->
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-                <div class="absolute -bottom-5 -left-5 w-24 h-24 bg-teal-500 rounded-full blur-3xl opacity-30"></div>
-            </div>
+        <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
+          <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="500">0</span>k+</div>
+          <div class="text-sm text-gray-500 mt-1">Utilisateurs</div>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-3">Tarification</h2>
-                <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Des plans adaptés à votre échelle</h3>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Starter -->
-                <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card hover:-translate-y-2 transition-transform duration-500">
-                    <h4 class="text-xl font-bold text-white mb-2">Starter</h4>
-                    <p class="text-gray-400 text-sm mb-6">Pour les projets personnels et startups.</p>
-                    <div class="flex items-baseline mb-6">
-                        <span class="text-4xl font-display font-bold text-white">0€</span>
-                        <span class="text-gray-500 ml-2">/mois</span>
-                    </div>
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> 1 Projet
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Analytique de base
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Support communautaire
-                        </li>
-                    </ul>
-                    <a href="#" class="w-full py-3 rounded-xl border border-white/20 text-white text-center font-medium hover:bg-white/5 transition-colors">Commencer</a>
-                </div>
-
-                <!-- Pro -->
-                <div class="glass-panel rounded-3xl p-8 flex flex-col pricing-card-pro feature-card relative transform md:-translate-y-4">
-                    <div class="absolute top-6 right-6 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-indigo-500/50">POPULAIRE</div>
-                    
-                    <h4 class="text-xl font-bold text-white mb-2">Professionnel</h4>
-                    <p class="text-gray-400 text-sm mb-6">Pour les équipes en croissance.</p>
-                    <div class="flex items-baseline mb-6">
-                        <span class="text-4xl font-display font-bold text-white">49€</span>
-                        <span class="text-gray-500 ml-2">/mois</span>
-                    </div>
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Projets illimités
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Analytique prédictive IA
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Exportation CSV/PDF
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Support prioritaire 24/7
-                        </li>
-                    </ul>
-                    <a href="#" class="w-full py-3 rounded-xl bg-indigo-600 text-white text-center font-medium hover:bg-indigo-500 transition-colors btn-glow shadow-lg shadow-indigo-500/20">Essai Gratuit</a>
-                </div>
-
-                <!-- Enterprise -->
-                <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card hover:-translate-y-2 transition-transform duration-500">
-                    <h4 class="text-xl font-bold text-white mb-2">Entreprise</h4>
-                    <p class="text-gray-400 text-sm mb-6">Sécurité et contrôle avancés.</p>
-                    <div class="flex items-baseline mb-6">
-                        <span class="text-4xl font-display font-bold text-white">Sur devis</span>
-                    </div>
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> SSO & SAML
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Audit logs
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Gestionnaire de compte
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-300">
-                            <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> SLA Garanti
-                        </li>
-                    </ul>
-                    <a href="#" class="w-full py-3 rounded-xl border border-white/20 text-white text-center font-medium hover:bg-white/5 transition-colors">Contacter</a>
-                </div>
-            </div>
+        <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
+          <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="10">0</span>x</div>
+          <div class="text-sm text-gray-500 mt-1">Plus Rapide</div>
         </div>
-    </section>
-
-    <!-- FAQ Section (New Addition) -->
-    <section id="faq" class="py-24 relative z-10">
-        <div class="max-w-4xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-3">Support</h2>
-                <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Questions Fréquentes</h3>
-            </div>
-
-            <div class="space-y-4">
-                <!-- FAQ Item 1 -->
-                <div class="glass-panel rounded-2xl overflow-hidden">
-                    <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Comment fonctionne l'essai gratuit ?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
-                    </button>
-                    <div class="faq-content overflow-hidden">
-                        <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                            Vous bénéficiez de 14 jours d'accès complet à toutes les fonctionnalités de notre plan Professionnel. Aucune carte bancaire n'est requise pour commencer. À la fin de la période d'essai, vous pouvez choisir un plan payant ou votre compte basculera automatiquement vers la version gratuite.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="glass-panel rounded-2xl overflow-hidden">
-                    <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Puis-je annuler mon abonnement à tout moment ?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
-                    </button>
-                    <div class="faq-content overflow-hidden">
-                        <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                            Absolument. Il n'y a aucun engagement de durée. Vous pouvez annuler ou modifier votre abonnement directement depuis votre tableau de bord en un clic. L'accès aux fonctionnalités premium restera actif jusqu'à la fin de votre période de facturation en cours.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="glass-panel rounded-2xl overflow-hidden">
-                    <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Vos serveurs sont-ils sécurisés ?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
-                    </button>
-                    <div class="faq-content overflow-hidden">
-                        <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                            La sécurité est notre priorité absolue. Nous utilisons un chiffrement AES-256 pour toutes les données stockées et TLS 1.3 pour les données en transit. Nos infrastructures sont auditées régulièrement et sont conformes aux normes RGPD et SOC2 Type II.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="glass-panel rounded-2xl overflow-hidden">
-                    <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Proposez-vous une API pour les développeurs ?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
-                    </button>
-                    <div class="faq-content overflow-hidden">
-                        <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                            Oui, notre API RESTful est complète et bien documentée. Elle vous permet d'intégrer toutes les fonctionnalités de Nexus directement dans vos propres applications. L'accès API est inclus à partir du plan Professionnel avec un taux de requêtes généreux.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="hover:bg-white/5 p-4 rounded-lg transition-colors">
+          <div class="text-3xl font-display font-bold text-white"><span class="stat-number" data-target="24">0</span>/7</div>
+          <div class="text-sm text-gray-500 mt-1">Support Expert</div>
         </div>
-    </section>
+      </div>
 
-    <!-- CTA Section -->
-    <section class="py-32 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-indigo-900/20"></div>
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="text-4xl md:text-6xl font-display font-bold mb-8">Prêt à construire <br/><span class="text-gradient">le futur ?</span></h2>
-            <p class="text-xl text-gray-400 mb-10">Rejoignez plus de 10 000 entreprises innovantes qui utilisent Nexus pour redéfinir leurs standards.</p>
-            
-            <form class="max-w-md mx-auto relative group">
-                <input type="email" placeholder="votre@email.com" class="w-full pl-6 pr-36 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all backdrop-blur-sm">
-                <button type="button" class="absolute right-1 top-1 bottom-1 px-6 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-all shadow-lg hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 duration-300 cubic-bezier(0.4, 0, 0.2, 1)">
-                    S'inscrire
-                </button>
-            </form>
-            <p class="text-sm text-gray-500 mt-4">14 jours d'essai gratuit. Pas de carte requise.</p>
-        </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 bg-[#020205] pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                <div class="col-span-2 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-6 h-6 bg-indigo-600 rounded-md flex items-center justify-center rotate-45">
-                            <div class="w-3 h-3 bg-white rounded-sm -rotate-45"></div>
-                        </div>
-                        <span class="font-display font-bold text-xl text-white">NEXUS</span>
-                    </div>
-                    <p class="text-gray-500 text-sm">Design futuriste pour entreprises visionnaires.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Produit</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Fonctionnalités</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Intégrations</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Prix</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Ressources</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Documentation</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">API</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Support</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Légal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Confidentialité</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Conditions</a></li>
-                    </ul>
-                </div>
+  <!-- Bento Grid Services Section -->
+  <section id="features" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-3">Fonctionnalités</h2>
+        <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Tout ce dont vous avez besoin</h3>
+      </div>
+
+      <!-- Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+
+        <!-- Large Interactive Chart Item -->
+        <div class="md:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-between feature-card group relative overflow-hidden">
+          <div class="relative z-20 pointer-events-none">
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center mb-4 text-indigo-400">
+              <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
             </div>
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-gray-600 text-sm">© 2024 Nexus Inc. Tous droits réservés.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors hover:scale-110 transform"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors hover:scale-110 transform"><i data-lucide="github" class="w-5 h-5"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors hover:scale-110 transform"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                </div>
-            </div>
+            <h4 class="text-2xl font-bold mb-2 text-white">Analytique en Temps Réel</h4>
+            <p class="text-gray-400 max-w-md">Suivez vos KPIs avec une précision millimétrée. Visualisez les flux de données en direct via notre moteur graphique propriétaire.</p>
+          </div>
+
+          <!-- Interactive Canvas Background -->
+          <div class="absolute inset-0 z-10 opacity-50 mask-gradient-bottom">
+            <canvas id="chart-canvas"></canvas>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
+        <!-- Tall Item -->
+        <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card md:row-span-2 relative overflow-hidden">
+          <div class="absolute top-0 right-0 p-32 bg-purple-600/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 text-purple-400 relative z-10">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-2xl font-bold mb-2 text-white relative z-10">Automatisation IA</h4>
+          <p class="text-gray-400 mb-8 relative z-10">Laissez nos algorithmes gérer les tâches répétitives pendant que vous vous concentrez sur la stratégie.</p>
 
-        // --------------------------------------------------------
-        // FAQ INTERACTION
-        // --------------------------------------------------------
-        document.querySelectorAll('.faq-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                // Lucide replaces <i> with <svg>, so we query for svg
-                const icon = button.querySelector('svg'); 
-                
-                // Fix: Check if elements exist to prevent null pointer errors
-                if (!content || !icon) return;
+          <div class="mt-auto relative z-10 space-y-3">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
+              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+              <span class="text-sm text-gray-300">Tâche optimisée</span>
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
+              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse" style="animation-delay: 0.5s"></div>
+              <span class="text-sm text-gray-300">Rapport généré</span>
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 transition-colors cursor-pointer">
+              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse" style="animation-delay: 1s"></div>
+              <span class="text-sm text-gray-300">Synchronisation</span>
+            </div>
+          </div>
+        </div>
 
-                const isOpen = content.style.maxHeight;
+        <!-- Regular Item -->
+        <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4 text-pink-400">
+            <i data-lucide="shield" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-2 text-white">Sécurité de Pointe</h4>
+          <p class="text-gray-400 text-sm">Chiffrement de bout en bout et conformité GDPR native pour toutes vos données.</p>
+        </div>
 
-                // Close all others
-                document.querySelectorAll('.faq-content').forEach(el => {
-                    el.style.maxHeight = null;
-                    el.classList.remove('active');
-                });
-                // Reset all icons
-                document.querySelectorAll('.faq-btn svg').forEach(el => {
-                    el.style.transform = 'rotate(0deg)';
-                });
+        <!-- NEW Bar Chart Item -->
+        <div class="glass-panel rounded-3xl p-6 flex flex-col feature-card relative overflow-hidden">
+          <div class="flex justify-between items-start mb-2 relative z-20 pointer-events-none">
+            <div>
+              <h4 class="text-lg font-bold text-white">Métriques</h4>
+              <p class="text-gray-400 text-xs">Engagement Mensuel</p>
+            </div>
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="bar-chart" class="w-4 h-4"></i>
+            </div>
+          </div>
 
-                // Toggle current
-                if (!isOpen) {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    content.classList.add('active');
-                    icon.style.transform = 'rotate(180deg)';
-                }
-            });
+          <div class="flex-1 w-full relative z-10 mt-2">
+            <canvas id="bar-canvas"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Benefit Section -->
+  <section class="py-24 relative overflow-hidden" id="workflow">
+    <!-- Background Glow -->
+    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
+      <div class="lg:w-1/2">
+        <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
+          Optimisez votre flux de travail <span class="text-gradient-alt">sans effort</span>
+        </h2>
+        <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+          Notre interface futuriste n'est pas seulement belle, elle est conçue pour l'efficacité. Réduisez le temps de gestion de 40% grâce à nos outils intelligents de regroupement et de filtrage.
+        </p>
+
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 group">
+            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="text-gray-300 group-hover:text-white transition-colors">Intégration API simplifiée</span>
+          </li>
+          <li class="flex items-center gap-3 group">
+            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="text-gray-300 group-hover:text-white transition-colors">Collaboration en équipe temps réel</span>
+          </li>
+          <li class="flex items-center gap-3 group">
+            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span class="text-gray-300 group-hover:text-white transition-colors">Exportation multi-formats</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:w-1/2 relative">
+        <!-- Abstract Code/Interface Representation with Typewriter -->
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500 hover:scale-105">
+          <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          </div>
+          <div class="space-y-3 font-mono text-sm h-[320px]" id="typewriter-container"></div>
+        </div>
+
+        <!-- Floating elements behind -->
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full blur-3xl opacity-40 animate-pulse"></div>
+        <div class="absolute -bottom-5 -left-5 w-24 h-24 bg-teal-500 rounded-full blur-3xl opacity-30"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-3">Tarification</h2>
+        <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Des plans adaptés à votre échelle</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Starter -->
+        <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card hover:-translate-y-2 transition-transform duration-500">
+          <h4 class="text-xl font-bold text-white mb-2">Starter</h4>
+          <p class="text-gray-400 text-sm mb-6">Pour les projets personnels et startups.</p>
+          <div class="flex items-baseline mb-6">
+            <span class="text-4xl font-display font-bold text-white">0€</span>
+            <span class="text-gray-500 ml-2">/mois</span>
+          </div>
+          <ul class="space-y-4 mb-8 flex-1">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> 1 Projet
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Analytique de base
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Support communautaire
+            </li>
+          </ul>
+          <a href="#" class="w-full py-3 rounded-xl border border-white/20 text-white text-center font-medium hover:bg-white/5 transition-colors">Commencer</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="glass-panel rounded-3xl p-8 flex flex-col pricing-card-pro feature-card relative transform md:-translate-y-4">
+          <div class="absolute top-6 right-6 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-indigo-500/50">POPULAIRE</div>
+
+          <h4 class="text-xl font-bold text-white mb-2">Professionnel</h4>
+          <p class="text-gray-400 text-sm mb-6">Pour les équipes en croissance.</p>
+          <div class="flex items-baseline mb-6">
+            <span class="text-4xl font-display font-bold text-white">49€</span>
+            <span class="text-gray-500 ml-2">/mois</span>
+          </div>
+          <ul class="space-y-4 mb-8 flex-1">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Projets illimités
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Analytique prédictive IA
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Exportation CSV/PDF
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Support prioritaire 24/7
+            </li>
+          </ul>
+          <a href="#" class="w-full py-3 rounded-xl bg-indigo-600 text-white text-center font-medium hover:bg-indigo-500 transition-colors btn-glow shadow-lg shadow-indigo-500/20">Essai Gratuit</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="glass-panel rounded-3xl p-8 flex flex-col feature-card hover:-translate-y-2 transition-transform duration-500">
+          <h4 class="text-xl font-bold text-white mb-2">Entreprise</h4>
+          <p class="text-gray-400 text-sm mb-6">Sécurité et contrôle avancés.</p>
+          <div class="flex items-baseline mb-6">
+            <span class="text-4xl font-display font-bold text-white">Sur devis</span>
+          </div>
+          <ul class="space-y-4 mb-8 flex-1">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> SSO & SAML
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Audit logs
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Gestionnaire de compte
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> SLA Garanti
+            </li>
+          </ul>
+          <a href="#" class="w-full py-3 rounded-xl border border-white/20 text-white text-center font-medium hover:bg-white/5 transition-colors">Contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 relative z-10">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-3">Support</h2>
+        <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Questions Fréquentes</h3>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ Item 1 -->
+        <div class="glass-panel rounded-2xl overflow-hidden">
+          <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+            <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Comment fonctionne l'essai gratuit ?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
+          </button>
+          <div class="faq-content overflow-hidden">
+            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+              Vous bénéficiez de 14 jours d'accès complet à toutes les fonctionnalités de notre plan Professionnel. Aucune carte bancaire n'est requise pour commencer. À la fin de la période d'essai, vous pouvez choisir un plan payant ou votre compte basculera automatiquement vers la version gratuite.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="glass-panel rounded-2xl overflow-hidden">
+          <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+            <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Puis-je annuler mon abonnement à tout moment ?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
+          </button>
+          <div class="faq-content overflow-hidden">
+            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+              Absolument. Il n'y a aucun engagement de durée. Vous pouvez annuler ou modifier votre abonnement directement depuis votre tableau de bord en un clic. L'accès aux fonctionnalités premium restera actif jusqu'à la fin de votre période de facturation en cours.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="glass-panel rounded-2xl overflow-hidden">
+          <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+            <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Vos serveurs sont-ils sécurisés ?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
+          </button>
+          <div class="faq-content overflow-hidden">
+            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+              La sécurité est notre priorité absolue. Nous utilisons un chiffrement AES-256 pour toutes les données stockées et TLS 1.3 pour les données en transit. Nos infrastructures sont auditées régulièrement et sont conformes aux normes RGPD et SOC2 Type II.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="glass-panel rounded-2xl overflow-hidden">
+          <button class="faq-btn w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+            <span class="text-lg font-medium text-white group-hover:text-indigo-400 transition-colors">Proposez-vous une API pour les développeurs ?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300 transform group-hover:text-white"></i>
+          </button>
+          <div class="faq-content overflow-hidden">
+            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+              Oui, notre API RESTful est complète et bien documentée. Elle vous permet d'intégrer toutes les fonctionnalités de Nexus directement dans vos propres applications. L'accès API est inclus à partir du plan Professionnel avec un taux de requêtes généreux.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-indigo-900/20"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <h2 class="text-4xl md:text-6xl font-display font-bold mb-8">Prêt à construire <br /><span class="text-gradient">le futur ?</span></h2>
+      <p class="text-xl text-gray-400 mb-10">Rejoignez plus de 10 000 entreprises innovantes qui utilisent Nexus pour redéfinir leurs standards.</p>
+
+      <form class="max-w-md mx-auto relative group">
+        <input type="email" placeholder="votre@email.com" class="w-full pl-6 pr-36 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all backdrop-blur-sm">
+        <button type="button" class="absolute right-1 top-1 bottom-1 px-6 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-all shadow-lg hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 duration-300 cubic-bezier(0.4, 0, 0.2, 1)">
+          S'inscrire
+        </button>
+      </form>
+      <p class="text-sm text-gray-500 mt-4">14 jours d'essai gratuit. Pas de carte requise.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 bg-[#020205] pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-6 h-6 bg-indigo-600 rounded-md flex items-center justify-center rotate-45">
+              <div class="w-3 h-3 bg-white rounded-sm -rotate-45"></div>
+            </div>
+            <span class="font-display font-bold text-xl text-white">NEXUS</span>
+          </div>
+          <p class="text-gray-500 text-sm">Design futuriste pour entreprises visionnaires.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Produit</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Fonctionnalités</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Intégrations</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Prix</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Ressources</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Documentation</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">API</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Légal</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Confidentialité</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition-colors">Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-600 text-sm">© 2024 Nexus Inc. Tous droits réservés.</p>
+        <div class="flex gap-4">
+          <a href="#" class="text-gray-500 hover:text-white transition-colors hover:scale-110 transform"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+          <a href="#" class="text-gray-500 hover:text-white transition-colors hover:scale-110 transform"><i data-lucide="github" class="w-5 h-5"></i></a>
+          <a href="#" class="text-gray-500 hover:text-white transition-colors hover:scale-110 transform"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // --------------------------------------------------------
+    // FAQ INTERACTION
+    // --------------------------------------------------------
+    document.querySelectorAll('.faq-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+
+        if (!content || !icon) return;
+
+        const isOpen = content.style.maxHeight;
+
+        document.querySelectorAll('.faq-content').forEach(el => {
+          el.style.maxHeight = null;
+          el.classList.remove('active');
         });
 
-        // --------------------------------------------------------
-        // NUMBER COUNTING ANIMATION
-        // --------------------------------------------------------
-        const statsSection = document.getElementById('stats-container');
-        const statNumbers = document.querySelectorAll('.stat-number');
-        let animated = false;
+        document.querySelectorAll('.faq-btn svg').forEach(el => {
+          el.style.transform = 'rotate(0deg)';
+        });
 
-        const animateValue = (obj, start, end, duration) => {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                
-                // Handle decimals for 99.9
-                if(end % 1 !== 0) {
-                     obj.innerHTML = (progress * (end - start) + start).toFixed(1);
-                } else {
-                     obj.innerHTML = Math.floor(progress * (end - start) + start);
-                }
-                
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.classList.add('active');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // --------------------------------------------------------
+    // NUMBER COUNTING ANIMATION
+    // --------------------------------------------------------
+    const statsSection = document.getElementById('stats-container');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let animated = false;
+
+    const animateValue = (obj, start, end, duration) => {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+        if (end % 1 !== 0) obj.innerHTML = (progress * (end - start) + start).toFixed(1);
+        else obj.innerHTML = Math.floor(progress * (end - start) + start);
+
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          statNumbers.forEach(stat => {
+            const target = parseFloat(stat.getAttribute('data-target'));
+            animateValue(stat, 0, target, 2000);
+          });
+          animated = true;
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statsObserver.observe(statsSection);
+
+    // --------------------------------------------------------
+    // ADVANCED HOVER & TILT EFFECTS
+    // --------------------------------------------------------
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const maxRotate = 3;
+        const rotateX = ((y - centerY) / centerY) * -maxRotate;
+        const rotateY = ((x - centerX) / centerX) * maxRotate;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.borderColor = 'rgba(99, 102, 241, 0.4)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        card.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+      });
+    });
+
+    // --------------------------------------------------------
+    // INTERACTIVE LINE CHART (Slower & Smoother)
+    // --------------------------------------------------------
+    const chartCanvas = document.getElementById('chart-canvas');
+    if (chartCanvas) {
+      const ctx = chartCanvas.getContext('2d');
+      let width, height;
+
+      const resizeChart = () => {
+        const parent = chartCanvas.parentElement;
+        width = parent.clientWidth;
+        height = parent.clientHeight;
+        chartCanvas.width = width;
+        chartCanvas.height = height;
+      };
+      window.addEventListener('resize', resizeChart);
+      resizeChart();
+
+      const dataPoints = [];
+      const maxPoints = 50;
+      for (let i = 0; i < maxPoints; i++) dataPoints.push(height / 2);
+
+      let frameId = 0;
+
+      function drawChart() {
+        if (frameId % 5 === 0) {
+          const lastPoint = dataPoints[dataPoints.length - 1];
+          let newPoint = lastPoint + (Math.random() - 0.5) * 20;
+          if (newPoint < 50) newPoint = 50;
+          if (newPoint > height - 50) newPoint = height - 50;
+
+          dataPoints.shift();
+          dataPoints.push(newPoint);
         }
 
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !animated) {
-                    statNumbers.forEach(stat => {
-                        const target = parseFloat(stat.getAttribute('data-target'));
-                        animateValue(stat, 0, target, 2000); // 2 seconds duration
-                    });
-                    animated = true;
-                }
-            });
-        }, { threshold: 0.5 });
+        ctx.clearRect(0, 0, width, height);
 
-        statsObserver.observe(statsSection);
+        ctx.beginPath();
+        ctx.moveTo(0, height);
+        for (let i = 0; i < maxPoints; i++) {
+          const x = (i / (maxPoints - 1)) * width;
+          ctx.lineTo(x, dataPoints[i]);
+        }
+        ctx.lineTo(width, height);
+        ctx.closePath();
 
+        const gradient = ctx.createLinearGradient(0, 0, 0, height);
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fill();
 
-        // --------------------------------------------------------
-        // ADVANCED HOVER & TILT EFFECTS
-        // --------------------------------------------------------
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+        ctx.beginPath();
+        for (let i = 0; i < maxPoints; i++) {
+          const x = (i / (maxPoints - 1)) * width;
+          ctx.lineTo(x, dataPoints[i]);
+        }
+        ctx.strokeStyle = '#818cf8';
+        ctx.lineWidth = 2;
+        ctx.stroke();
 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const maxRotate = 3; 
-                const rotateX = ((y - centerY) / centerY) * -maxRotate;
-                const rotateY = ((x - centerX) / centerX) * maxRotate;
+        ctx.beginPath();
+        ctx.arc(width, dataPoints[maxPoints - 1], 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#fff';
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                card.style.borderColor = 'rgba(99, 102, 241, 0.4)';
-            });
+        frameId++;
+        requestAnimationFrame(drawChart);
+      }
+      drawChart();
+    }
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                card.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-            });
-        });
+    // --------------------------------------------------------
+    // NEW INTERACTIVE BAR CHART
+    // --------------------------------------------------------
+    const barCanvas = document.getElementById('bar-canvas');
+    if (barCanvas) {
+      const ctx = barCanvas.getContext('2d');
+      let width, height;
+      let barData = [];
+      const barCount = 12;
 
-        // --------------------------------------------------------
-        // INTERACTIVE LINE CHART (Slower & Smoother)
-        // --------------------------------------------------------
-        const chartCanvas = document.getElementById('chart-canvas');
-        if (chartCanvas) {
-            const ctx = chartCanvas.getContext('2d');
-            let width, height;
-            
-            const resizeChart = () => {
-                const parent = chartCanvas.parentElement;
-                width = parent.clientWidth;
-                height = parent.clientHeight;
-                chartCanvas.width = width;
-                chartCanvas.height = height;
-            };
-            window.addEventListener('resize', resizeChart);
-            resizeChart();
+      let hoverIndex = -1;
 
-            const dataPoints = [];
-            const maxPoints = 50;
-            for(let i=0; i<maxPoints; i++) dataPoints.push(height/2);
+      const resizeBarChart = () => {
+        const parent = barCanvas.parentElement;
+        width = parent.clientWidth;
+        height = parent.clientHeight;
+        barCanvas.width = width;
+        barCanvas.height = height;
 
-            let frameId = 0;
+        if (barData.length === 0) {
+          for (let i = 0; i < barCount; i++) {
+            barData.push(Math.random() * 0.8 + 0.2);
+          }
+        }
+      };
+      window.addEventListener('resize', resizeBarChart);
+      resizeBarChart();
 
-            function drawChart() {
-                // Update data only every 5 frames for slower scrolling
-                if (frameId % 5 === 0) {
-                    const lastPoint = dataPoints[dataPoints.length - 1];
-                    let newPoint = lastPoint + (Math.random() - 0.5) * 20; // Reduced variance
-                    if(newPoint < 50) newPoint = 50;
-                    if(newPoint > height - 50) newPoint = height - 50;
-                    
-                    dataPoints.shift();
-                    dataPoints.push(newPoint);
-                }
-                
-                ctx.clearRect(0, 0, width, height);
+      barCanvas.addEventListener('mousemove', (e) => {
+        const rect = barCanvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const totalBarWidth = width / barCount;
 
-                // Draw Area
-                ctx.beginPath();
-                ctx.moveTo(0, height);
-                for(let i=0; i<maxPoints; i++) {
-                    const x = (i / (maxPoints - 1)) * width;
-                    ctx.lineTo(x, dataPoints[i]);
-                }
-                ctx.lineTo(width, height);
-                ctx.closePath();
-                
-                const gradient = ctx.createLinearGradient(0, 0, 0, height);
-                gradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
-                gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
-                ctx.fillStyle = gradient;
-                ctx.fill();
+        const index = Math.floor(x / totalBarWidth);
+        if (index >= 0 && index < barCount) hoverIndex = index;
+        else hoverIndex = -1;
+      });
 
-                // Draw Line
-                ctx.beginPath();
-                for(let i=0; i<maxPoints; i++) {
-                    const x = (i / (maxPoints - 1)) * width;
-                    ctx.lineTo(x, dataPoints[i]);
-                }
-                ctx.strokeStyle = '#818cf8';
-                ctx.lineWidth = 2;
-                ctx.stroke();
+      barCanvas.addEventListener('mouseleave', () => {
+        hoverIndex = -1;
+      });
 
-                // Draw Active Dot
-                ctx.beginPath();
-                ctx.arc(width, dataPoints[maxPoints-1], 4, 0, Math.PI*2);
-                ctx.fillStyle = '#fff';
-                ctx.fill();
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#fff';
+      function drawBarChart() {
+        ctx.clearRect(0, 0, width, height);
 
-                frameId++;
-                requestAnimationFrame(drawChart);
-            }
-            drawChart();
+        const totalBarWidth = width / barCount;
+        const barWidth = totalBarWidth * 0.6;
+        const gap = totalBarWidth * 0.4;
+        const maxBarHeight = height - 20;
+
+        for (let i = 0; i < barCount; i++) {
+          const h = barData[i] * maxBarHeight;
+          const x = i * totalBarWidth + gap / 2;
+          const y = height - h;
+
+          const isHovered = (i === hoverIndex);
+
+          if (isHovered) {
+            ctx.fillStyle = '#2dd4bf';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = 'rgba(45, 212, 191, 0.5)';
+
+            ctx.fillStyle = '#fff';
+            ctx.font = '12px Inter';
+            ctx.textAlign = 'center';
+            ctx.fillText(Math.round(barData[i] * 100), x + barWidth / 2, y - 8);
+
+            ctx.fillStyle = '#2dd4bf';
+          } else {
+            ctx.fillStyle = 'rgba(45, 212, 191, 0.2)';
+            ctx.shadowBlur = 0;
+          }
+
+          ctx.beginPath();
+          ctx.roundRect(x, y, barWidth, h, 4);
+          ctx.fill();
         }
 
-        // --------------------------------------------------------
-        // NEW INTERACTIVE BAR CHART
-        // --------------------------------------------------------
-        const barCanvas = document.getElementById('bar-canvas');
-        if (barCanvas) {
-            const ctx = barCanvas.getContext('2d');
-            let width, height;
-            let barData = [];
-            const barCount = 12; // e.g., months
-            
-            // Mouse interaction
-            let hoverIndex = -1;
+        requestAnimationFrame(drawBarChart);
+      }
+      drawBarChart();
+    }
 
-            const resizeBarChart = () => {
-                const parent = barCanvas.parentElement;
-                width = parent.clientWidth;
-                height = parent.clientHeight;
-                barCanvas.width = width;
-                barCanvas.height = height;
-                
-                // Init data if empty
-                if(barData.length === 0) {
-                    for(let i=0; i<barCount; i++) {
-                        barData.push(Math.random() * 0.8 + 0.2); // 20% to 100% height
-                    }
-                }
-            };
-            window.addEventListener('resize', resizeBarChart);
-            resizeBarChart();
+    // --------------------------------------------------------
+    // TYPEWRITER EFFECT
+    // --------------------------------------------------------
+    const codeLines = [
+      { text: "const optimize = async () => {", color: "text-white" },
+      { text: "  // Initialisation du core AI", color: "text-gray-400" },
+      { text: "  await nexus.analyze({", color: "text-purple-400" },
+      { text: "    mode: 'ultra_fast',", color: "text-orange-300" },
+      { text: "    depth: 100", color: "text-orange-300" },
+      { text: "  });", color: "text-white" },
+      { text: "  return 'Optimization Complete';", color: "text-green-400" },
+      { text: "}", color: "text-white" }
+    ];
 
-            barCanvas.addEventListener('mousemove', (e) => {
-                const rect = barCanvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                // Calculate which bar is hovered
-                const barWidth = (width / barCount) * 0.6;
-                const gap = (width / barCount) * 0.4;
-                const totalBarWidth = width / barCount;
-                
-                const index = Math.floor(x / totalBarWidth);
-                if(index >= 0 && index < barCount) {
-                    hoverIndex = index;
-                } else {
-                    hoverIndex = -1;
-                }
-            });
+    const typeWriterContainer = document.getElementById('typewriter-container');
+    let lineIndex = 0;
+    let charIndex = 0;
 
-            barCanvas.addEventListener('mouseleave', () => {
-                hoverIndex = -1;
-            });
-
-            function drawBarChart() {
-                ctx.clearRect(0, 0, width, height);
-
-                const totalBarWidth = width / barCount;
-                const barWidth = totalBarWidth * 0.6;
-                const gap = totalBarWidth * 0.4;
-                const maxBarHeight = height - 20; // Padding top
-
-                for(let i=0; i<barCount; i++) {
-                    const h = barData[i] * maxBarHeight;
-                    const x = i * totalBarWidth + gap/2;
-                    const y = height - h;
-                    
-                    // Style
-                    const isHovered = (i === hoverIndex);
-                    
-                    if(isHovered) {
-                        ctx.fillStyle = '#2dd4bf'; // Teal active
-                        ctx.shadowBlur = 15;
-                        ctx.shadowColor = 'rgba(45, 212, 191, 0.5)';
-                        
-                        // Draw Tooltip Text
-                        ctx.fillStyle = '#fff';
-                        ctx.font = '12px Inter';
-                        ctx.textAlign = 'center';
-                        ctx.fillText(Math.round(barData[i]*100), x + barWidth/2, y - 8);
-                        
-                        // Reset shadow for rect
-                        ctx.fillStyle = '#2dd4bf';
-                    } else {
-                        ctx.fillStyle = 'rgba(45, 212, 191, 0.2)'; // Teal inactive
-                        ctx.shadowBlur = 0;
-                    }
-                    
-                    // Rounded rect helper (basic rect for now)
-                    ctx.beginPath();
-                    ctx.roundRect(x, y, barWidth, h, 4);
-                    ctx.fill();
-                }
-
-                requestAnimationFrame(drawBarChart);
-            }
-            drawBarChart();
+    function typeWriter() {
+      if (lineIndex < codeLines.length) {
+        if (charIndex === 0) {
+          const lineDiv = document.createElement('div');
+          lineDiv.className = codeLines[lineIndex].color + " font-mono text-sm";
+          if (codeLines[lineIndex].text.startsWith("  ")) lineDiv.style.paddingLeft = "1rem";
+          if (codeLines[lineIndex].text.startsWith("    ")) lineDiv.style.paddingLeft = "2rem";
+          typeWriterContainer.appendChild(lineDiv);
         }
 
-        // --------------------------------------------------------
-        // TYPEWRITER EFFECT
-        // --------------------------------------------------------
-        const codeLines = [
-            { text: "const optimize = async () => {", color: "text-white" },
-            { text: "  // Initialisation du core AI", color: "text-gray-400" },
-            { text: "  await nexus.analyze({", color: "text-purple-400" },
-            { text: "    mode: 'ultra_fast',", color: "text-orange-300" },
-            { text: "    depth: 100", color: "text-orange-300" },
-            { text: "  });", color: "text-white" },
-            { text: "  return 'Optimization Complete';", color: "text-green-400" },
-            { text: "}", color: "text-white" }
-        ];
-        
-        const typeWriterContainer = document.getElementById('typewriter-container');
-        let lineIndex = 0;
-        let charIndex = 0;
+        const currentDiv = typeWriterContainer.lastElementChild;
+        currentDiv.textContent += codeLines[lineIndex].text.charAt(charIndex);
+        charIndex++;
 
-        function typeWriter() {
-            if (lineIndex < codeLines.length) {
-                if (charIndex === 0) {
-                    const lineDiv = document.createElement('div');
-                    lineDiv.className = codeLines[lineIndex].color + " font-mono text-sm";
-                    if(codeLines[lineIndex].text.startsWith("  ")) lineDiv.style.paddingLeft = "1rem";
-                    if(codeLines[lineIndex].text.startsWith("    ")) lineDiv.style.paddingLeft = "2rem";
-                    typeWriterContainer.appendChild(lineDiv);
-                }
-
-                const currentDiv = typeWriterContainer.lastElementChild;
-                currentDiv.textContent += codeLines[lineIndex].text.charAt(charIndex);
-                charIndex++;
-
-                if (charIndex < codeLines[lineIndex].text.length) {
-                    setTimeout(typeWriter, Math.random() * 10 + 5); // Faster speed
-                } else {
-                    lineIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriter, 100);
-                }
-            } else {
-                 const resultDiv = document.createElement('div');
-                 resultDiv.className = "mt-4 p-3 bg-indigo-500/10 rounded border border-indigo-500/20 text-indigo-300 opacity-0 transition-opacity duration-1000";
-                 resultDiv.innerHTML = "> System ready. Waiting for input... <span class='animate-cursor'>|</span>";
-                 typeWriterContainer.appendChild(resultDiv);
-                 setTimeout(() => resultDiv.classList.remove('opacity-0'), 100);
-            }
+        if (charIndex < codeLines[lineIndex].text.length) {
+          setTimeout(typeWriter, Math.random() * 10 + 5);
+        } else {
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeWriter, 100);
         }
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    typeWriter();
-                    observer.disconnect();
-                }
-            });
-        });
-        observer.observe(typeWriterContainer);
+      } else {
+        const resultDiv = document.createElement('div');
+        resultDiv.className = "mt-4 p-3 bg-indigo-500/10 rounded border border-indigo-500/20 text-indigo-300 opacity-0 transition-opacity duration-1000";
+        resultDiv.innerHTML = "> System ready. Waiting for input... <span class='animate-cursor'>|</span>";
+        typeWriterContainer.appendChild(resultDiv);
+        setTimeout(() => resultDiv.classList.remove('opacity-0'), 100);
+      }
+    }
 
-
-        // --------------------------------------------------------
-        // THREE.JS ANIMATION
-        // --------------------------------------------------------
-        const container = document.getElementById('canvas-container');
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x050505, 0.001);
-
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const count = 3000;
-        
-        const positions = new Float32Array(count * 3);
-        const colors = new Float32Array(count * 3);
-
-        for(let i = 0; i < count; i++) {
-            const x = (Math.random() - 0.5) * 20;
-            const z = (Math.random() - 0.5) * 20;
-            const y = (Math.random() - 0.5) * 10;
-
-            positions[i * 3] = x;
-            positions[i * 3 + 1] = y;
-            positions[i * 3 + 2] = z;
-
-            const mix = Math.random();
-            const color = new THREE.Color();
-            if(mix > 0.66) color.setHex(0x6366f1);
-            else if(mix > 0.33) color.setHex(0xc084fc);
-            else color.setHex(0x2dd4bf);
-
-            colors[i * 3] = color.r;
-            colors[i * 3 + 1] = color.g;
-            colors[i * 3 + 2] = color.b;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          typeWriter();
+          observer.disconnect();
         }
+      });
+    });
+    observer.observe(typeWriterContainer);
 
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    // --------------------------------------------------------
+    // THREE.JS ANIMATION (✅ Hero only sizing)
+    // --------------------------------------------------------
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050505, 0.001);
 
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.05,
-            vertexColors: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
-            transparent: true,
-            opacity: 0.8
-        });
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      1000
+    );
 
-        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particles);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);   // ✅ changed
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
 
-        camera.position.z = 4;
-        camera.position.y = 1;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const count = 3000;
 
-        let mouseX = 0;
-        let mouseY = 0;
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
 
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - windowHalfX);
-            mouseY = (event.clientY - windowHalfY);
-        });
+    for (let i = 0; i < count; i++) {
+      const x = (Math.random() - 0.5) * 20;
+      const z = (Math.random() - 0.5) * 20;
+      const y = (Math.random() - 0.5) * 10;
 
-        const clock = new THREE.Clock();
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
+      positions[i * 3 + 2] = z;
 
-        function animate() {
-            requestAnimationFrame(animate);
+      const mix = Math.random();
+      const color = new THREE.Color();
+      if (mix > 0.66) color.setHex(0x6366f1);
+      else if (mix > 0.33) color.setHex(0xc084fc);
+      else color.setHex(0x2dd4bf);
 
-            const elapsedTime = clock.getElapsedTime();
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+    }
 
-            particles.rotation.y += 0.001;
-            particles.rotation.x += 0.0005;
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-            const positions = particles.geometry.attributes.position.array;
-            for(let i = 0; i < count; i++) {
-                const i3 = i * 3;
-                const x = particlesGeometry.attributes.position.array[i3];
-                positions[i3 + 1] = Math.sin(elapsedTime * 0.5 + x) * 0.5 + (Math.sin(elapsedTime * 0.3 + positions[i3+2]) * 0.5);
-            }
-            particles.geometry.attributes.position.needsUpdate = true;
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.05,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      transparent: true,
+      opacity: 0.8
+    });
 
-            camera.position.x += (mouseX * 0.001 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 0.001 - camera.position.y) * 0.05;
-            
-            camera.lookAt(scene.position);
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
 
-            renderer.render(scene, camera);
-        }
+    camera.position.z = 4;
+    camera.position.y = 1;
 
-        animate();
+    let mouseX = 0;
+    let mouseY = 0;
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+    document.addEventListener('mousemove', (event) => {
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      mouseX = (event.clientX - centerX);
+      mouseY = (event.clientY - centerY);
+    });
 
-        const nav = document.getElementById('navbar');
-        // Updated: Removed logic manipulating container classes
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-                nav.classList.remove('py-6');
-                nav.classList.add('py-2');
-            } else {
-                nav.classList.remove('scrolled');
-                nav.classList.remove('py-2');
-                nav.classList.add('py-6');
-            }
-        });
+    const clock = new THREE.Clock();
 
-    </script>
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsedTime = clock.getElapsedTime();
+
+      particles.rotation.y += 0.001;
+      particles.rotation.x += 0.0005;
+
+      const posArr = particles.geometry.attributes.position.array;
+      for (let i = 0; i < count; i++) {
+        const i3 = i * 3;
+        const x = particlesGeometry.attributes.position.array[i3];
+        posArr[i3 + 1] =
+          Math.sin(elapsedTime * 0.5 + x) * 0.5 +
+          (Math.sin(elapsedTime * 0.3 + posArr[i3 + 2]) * 0.5);
+      }
+      particles.geometry.attributes.position.needsUpdate = true;
+
+      camera.position.x += (mouseX * 0.001 - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY * 0.001 - camera.position.y) * 0.05;
+
+      camera.lookAt(scene.position);
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // ✅ Resize based on hero container (not window)
+    window.addEventListener('resize', () => {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    const nav = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+        nav.classList.remove('py-6');
+        nav.classList.add('py-2');
+      } else {
+        nav.classList.remove('scrolled');
+        nav.classList.remove('py-2');
+        nav.classList.add('py-6');
+      }
+    });
+  </script>
 </body>
 </html>
